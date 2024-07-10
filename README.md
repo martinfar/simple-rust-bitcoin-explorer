@@ -5,7 +5,7 @@
 This API provides access to Bitcoin blockchain data, including block information, transaction details, and the latest blocks. It interfaces with a Bitcoin node through RPC calls and exposes the data via HTTP endpoints.
 
 ## Configuration
-
+Rename the file `example-config.yaml` to `config.yaml`. Fill accordingly. 
 The API is configured using a `config.yaml` file, which should contain the following structure:
 
 ```yaml
