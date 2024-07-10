@@ -4,6 +4,43 @@
 
 This API provides access to Bitcoin blockchain data, including block information, transaction details, and the latest blocks. It interfaces with a Bitcoin node through RPC calls and exposes the data via HTTP endpoints.
 
+## Configuration
+
+The API is configured using a `config.yaml` file, which should contain the following structure:
+
+```yaml
+rpc:
+  url: "http://localhost:8332"
+  user: "rpcuser"
+  pass: "rpcpassword"
+server:
+  host: "127.0.0.1"
+  port: 8080
+```
+
+Adjust these values according to your Bitcoin node configuration and desired API server settings.
+
+### On Bitcoin node 
+Add to bitcoin node conf the following to allow incoming rpc call and **Restart the node**. 
+bitcoin.conf
+```toml
+#network allow rpc
+#rpcallowip=<network>/16
+#Example:
+rpcallowip=192.168.20.50/16
+```
+## Running the API
+
+To run the API, ensure you have Rust installed and then execute:
+
+```
+cargo run
+```
+
+Make sure the `config.yaml` file is in the same directory as the binary.
+
+
+
 ## Base URL
 
 The base URL for the API is configured in the `config.yaml` file. By default, it uses the host and port specified in the `ServerConfig` struct.
@@ -83,31 +120,6 @@ This API does not implement rate limiting. Consider adding rate limiting in a pr
 
 The API uses the `log` crate for logging. Log levels can be configured using the `RUST_LOG` environment variable.
 
-## Configuration
-
-The API is configured using a `config.yaml` file, which should contain the following structure:
-
-```yaml
-rpc:
-  url: "http://localhost:8332"
-  user: "rpcuser"
-  pass: "rpcpassword"
-server:
-  host: "127.0.0.1"
-  port: 8080
-```
-
-Adjust these values according to your Bitcoin node configuration and desired API server settings.
-
-## Running the API
-
-To run the API, ensure you have Rust installed and then execute:
-
-```
-cargo run
-```
-
-Make sure the `config.yaml` file is in the same directory as the binary.
 
 ## Dependencies
 
